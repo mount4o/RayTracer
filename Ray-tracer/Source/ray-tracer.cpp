@@ -114,6 +114,12 @@ bool Scatter(const ray_t& r_in, const hit_record_t& rec, vec3_t& attenuation, ra
 	return false;
 }
 
+vec3_t Reflect(const vec3_t& v, const vec3_t& n)
+{
+	// v - 2 * dot(v, n) * n
+	return Subtract( v, Scale( Scale( n, Dot(v, n) ), 2.0f ) );
+}
+
 bool RayTraceWorld(const ray_t& r, float t_min, float t_max, sphere_t* spheres[], size_t size_spheres, hit_record_t &rec)
 {
 	hit_record_t temp_rec = { };
@@ -141,14 +147,19 @@ vec3_t Render(const ray_t& r, sphere_t* spheres[], size_t size_spheres, int dept
 		// It's a reflective material ( metal )
 		if (rec.material.reflection > 0.0f)
 		{
-
+			vec3_t reflected = Reflect(Normalize(r.dir), rec.normal);
+			ray_t scattered = { rec.p, reflected };
+			if (Dot(scattered.dir, rec.normal) > 0)
+			{
+				return Multiply(Render(scattered, spheres, size_spheres, depth + 1), rec.material.albedo);
+			}
 		}
 		// It's a diffuse material 
 		else
 		{
 			vec3_t target = Add(Add(rec.p, rec.normal), RandomInUnitSphere());
 			ray_t material_ray = { rec.p , Subtract(target, rec.p) };
-			return Scale(Render(material_ray, spheres, size_spheres, ++depth), 0.5f);
+			return Multiply(Render(material_ray, spheres, size_spheres, depth + 1), rec.material.albedo);
 		}
 	}
 	else
@@ -159,6 +170,15 @@ vec3_t Render(const ray_t& r, sphere_t* spheres[], size_t size_spheres, int dept
 		float f = 0.5f * (unit_direction.y + 1.0f);
 		return Lerp(v0, v1, f);
 	}
+}
+
+void CreateSphere(sphere_t* sphere, vec3_t center, float radius, float reflection, vec3_t albedo)
+{
+	sphere = (sphere_t*)malloc(sizeof(sphere_t));
+	sphere->center = center;
+	sphere->radius = radius;
+	sphere->material.reflection = reflection;
+	sphere->material.albedo = albedo;
 }
 
 int main(int argc, char **argv)
@@ -178,19 +198,31 @@ int main(int argc, char **argv)
 	camera.origin = { 0.0f, 0.0f, 0.0f };
 
 	// Sphere array init
-	sphere_t *hitables[2];
+	sphere_t *hitables[4];
 	hitables[0] = (sphere_t*)malloc(sizeof(sphere_t));
 	hitables[0]->center = { 0.0f, 0.0f, -1.0f };
 	hitables[0]->radius = 0.5f;
 	hitables[0]->material.reflection = 0.0f;
 	hitables[0]->material.albedo = { 0.8f, 0.3f, 0.3f};
 
+
 	hitables[1] = (sphere_t*)malloc(sizeof(sphere_t));
 	hitables[1]->center = { 0.0f, -100.5f, -1.0f };
 	hitables[1]->radius = 100.0f;
-	hitables[0]->material.reflection = 0.0f;
-	hitables[0]->material.albedo = { 0.8f, 0.8f, 0.0f };
+	hitables[1]->material.reflection = 0.0f;
+	hitables[1]->material.albedo = { 0.8f, 0.8f, 0.0f };
 
+	hitables[2] = (sphere_t*)malloc(sizeof(sphere_t));
+	hitables[2]->center = { 1.0f, 0.0f, -1.0f };
+	hitables[2]->radius = 0.5f;
+	hitables[2]->material.reflection = 1.0f;
+	hitables[2]->material.albedo = { 0.8f, 0.6f, 0.2f };
+
+	hitables[3] = (sphere_t*)malloc(sizeof(sphere_t));
+	hitables[3]->center = { -1.0f, 0.0f, -1.0f };
+	hitables[3]->radius = 0.5f;
+	hitables[3]->material.reflection = 1.0f;
+	hitables[3]->material.albedo = { 0.8f, 0.8f, 0.8f };
 	//std::cout << sizeof(hitables) / sizeof(sphere_t*) << std::endl;
 	std::cout << "Rendering..."<< std::endl;
 	for (int j = ny - 1; j >= 0; --j)
