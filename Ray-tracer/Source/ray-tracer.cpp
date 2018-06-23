@@ -223,7 +223,6 @@ int main(int argc, char **argv)
 	hitables[3]->radius = 0.5f;
 	hitables[3]->material.reflection = 1.0f;
 	hitables[3]->material.albedo = { 0.8f, 0.8f, 0.8f };
-
 	//std::cout << sizeof(hitables) / sizeof(sphere_t*) << std::endl;
 	std::cout << "Rendering..."<< std::endl;
 	for (int j = ny - 1; j >= 0; --j)
