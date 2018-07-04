@@ -1,0 +1,22 @@
+﻿  ray-tracer.c
+c:\users\enter\source\repos\ray-tracer\ray-tracer\source\ray-tracer.c(30): warning C4204: nonstandard extension used: non-constant aggregate initializer
+c:\users\enter\source\repos\ray-tracer\ray-tracer\source\ray-tracer.c(31): warning C4204: nonstandard extension used: non-constant aggregate initializer
+c:\users\enter\source\repos\ray-tracer\ray-tracer\source\ray-tracer.c(32): warning C4204: nonstandard extension used: non-constant aggregate initializer
+c:\users\enter\source\repos\ray-tracer\ray-tracer\source\ray-tracer.c(33): warning C4204: nonstandard extension used: non-constant aggregate initializer
+c:\users\enter\source\repos\ray-tracer\ray-tracer\source\ray-tracer.c(36): warning C4204: nonstandard extension used: non-constant aggregate initializer
+c:\users\enter\source\repos\ray-tracer\ray-tracer\source\ray-tracer.c(37): warning C4204: nonstandard extension used: non-constant aggregate initializer
+c:\users\enter\source\repos\ray-tracer\ray-tracer\source\ray-tracer.c(38): warning C4204: nonstandard extension used: non-constant aggregate initializer
+c:\users\enter\source\repos\ray-tracer\ray-tracer\source\ray-tracer.c(39): warning C4204: nonstandard extension used: non-constant aggregate initializer
+c:\users\enter\source\repos\ray-tracer\ray-tracer\source\ray-tracer.c(42): warning C4204: nonstandard extension used: non-constant aggregate initializer
+c:\users\enter\source\repos\ray-tracer\ray-tracer\source\ray-tracer.c(55): warning C4204: nonstandard extension used: non-constant aggregate initializer
+c:\users\enter\source\repos\ray-tracer\ray-tracer\source\ray-tracer.c(67): warning C4204: nonstandard extension used: non-constant aggregate initializer
+c:\users\enter\source\repos\ray-tracer\ray-tracer\source\ray-tracer.c(82): warning C4204: nonstandard extension used: non-constant aggregate initializer
+c:\users\enter\source\repos\ray-tracer\ray-tracer\source\ray-tracer.c(203): warning C4204: nonstandard extension used: non-constant aggregate initializer
+c:\users\enter\source\repos\ray-tracer\ray-tracer\source\ray-tracer.c(209): warning C4204: nonstandard extension used: non-constant aggregate initializer
+c:\users\enter\source\repos\ray-tracer\ray-tracer\source\ray-tracer.c(213): warning C4204: nonstandard extension used: non-constant aggregate initializer
+c:\users\enter\source\repos\ray-tracer\ray-tracer\source\ray-tracer.c(252): warning C4204: nonstandard extension used: non-constant aggregate initializer
+c:\users\enter\source\repos\ray-tracer\ray-tracer\source\ray-tracer.c(282): warning C4204: nonstandard extension used: non-constant aggregate initializer
+c:\users\enter\source\repos\ray-tracer\ray-tracer\source\ray-tracer.c(356): warning C4204: nonstandard extension used: non-constant aggregate initializer
+c:\users\enter\source\repos\ray-tracer\ray-tracer\source\ray-tracer.c(310): warning C4100: 'argv': unreferenced formal parameter
+c:\users\enter\source\repos\ray-tracer\ray-tracer\source\ray-tracer.c(310): warning C4100: 'argc': unreferenced formal parameter
+  Ray-tracer.vcxproj -> C:\Users\enter\source\repos\Ray-tracer\x64\Debug\Ray-tracer.exe
