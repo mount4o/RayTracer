@@ -314,12 +314,14 @@ int main(int argc, char **argv)
 	// Sphere array init
 	sphere_t* hitables[4];
 	
+	// Glass sphere
 	hitables[0] = CreateSphere( (vec3_t) { -1.5f, 0.0f, -1.0f }, 0.5f, false, true, 1.5f, 0.0f, (vec3_t){ 0.0f, 0.0f, 0.0f } );
-	hitables[1] = CreateSphere((vec3_t) { -1.5f, 0.0f, -1.0f }, -0.45f, false, true, 1.5f, 0.0f, (vec3_t) { 0.0f, 0.0f, 0.0f } );
-	hitables[2] = CreateSphere((vec3_t) { 0.0f, 0.0f, -1.0f }, 0.5f, false, false, 0.0f, 0.0f, (vec3_t) { 0.1f, 0.2f, 0.5f } );
-	hitables[3] = CreateSphere((vec3_t) { 1.5f, 0.0f, -1.0f }, 0.5f, true, false, 0.0f, 0.0f, (vec3_t) { 0.8f, 0.6f, 0.2f } );
 	// "Ground" sphere
 	hitables[1] = CreateSphere( (vec3_t){ 0.0f, -100.5f, -1.0f }, 100.0f, false, false, 0.0f, 0.0f, (vec3_t){ 0.8f, 0.8f, 0.0f } );
+	// Diffuse sphere
+	hitables[2] = CreateSphere((vec3_t) { 0.0f, 0.0f, -1.0f }, 0.5f, false, false, 0.0f, 0.0f, (vec3_t) { 0.1f, 0.2f, 0.5f } );
+	// Metal sphere
+	hitables[3] = CreateSphere((vec3_t) { 1.5f, 0.0f, -1.0f }, 0.5f, true, false, 0.0f, 0.0f, (vec3_t) { 0.8f, 0.6f, 0.2f } );
 		
 	vec3_t eye = { -8.0f, 2.0f, 8.0f };
 	vec3_t lookat = { 0.0f, 0.0f, 0.0f };
@@ -331,7 +333,7 @@ int main(int argc, char **argv)
 	int ny = 800;
 	int ns = 10;
 
-	FILE *image = fopen("test.ppm", "wb"); /* b - binary mode */
+	FILE *image = fopen("test.ppm", "wb");
 	(void)fprintf(image, "P6\n%d %d\n255\n", nx, ny);
 
 	printf("PPM\n255\n%d, %d\n", nx, ny);
@@ -361,8 +363,6 @@ int main(int argc, char **argv)
 			rgb[2] = (char)(255.99f * color.z);
 
 			(void)fwrite(rgb, 1, 3, image);
-
-			//ofs << ir << " " << ig << " " << ib << "\n";
 		}
 	}
 	(void)fclose(image);
@@ -372,7 +372,6 @@ int main(int argc, char **argv)
 	{
 		free(hitables[z]);
 	}
-	//system("PAUSE");
 }
 
 #endif
