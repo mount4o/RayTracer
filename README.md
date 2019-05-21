@@ -1,4 +1,4 @@
 # Ray Tracer
 
 
-![alt text](Ray-tracer/test.ppm?raw=true "Image")
+![Image](https://github.com/mount4o/RayTracer/blob/master/Ray-tracer/test.ppm)
